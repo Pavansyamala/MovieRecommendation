@@ -1,10 +1,10 @@
 import os
 import sys
 from src.exception import CustomException
+from src.components.data_transformation import DataTransformation , DataTransformationConfig
 from src.logger import logging
 import pandas as pd
 
-# from src.components.data_transformation import DataTransformation 
 # from src.components.model_trainer import ModelTrainer
 
 from dataclasses import dataclass
@@ -59,11 +59,11 @@ class DataIngestion:
         
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion() 
+    movies_path = obj.initiate_data_ingestion() 
 
-    # obj2 = DataTransformation()
-    # train_arr , test_arr , _,_= obj2.initiate_data_transformation(train_data,test_data)
-    # print(train_arr[0] , test_arr.shape)
+    obj2 = DataTransformation()
+    movies_data , _ = obj2.initiate_data_transformation(movies_path)
+    print(movies_data.shape)
 
     # obj3 = ModelTrainer()
     # print(obj3.initiate_model_trainer(train_arr,test_arr))
